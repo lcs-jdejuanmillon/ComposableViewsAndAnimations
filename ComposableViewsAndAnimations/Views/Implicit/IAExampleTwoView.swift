@@ -4,9 +4,9 @@
 //
 //  Created by Russell Gordon on 2021-02-23.
 //
-
+ 
 import SwiftUI
-
+ 
 struct IAExampleTwoView: View {
     
     // MARK: Stored properties
@@ -16,7 +16,7 @@ struct IAExampleTwoView: View {
     
     // Controls the size of the circle
     @State private var scaleFactor: CGFloat = 1.0
-
+ 
     // Controls the hue of the circle
     @State private var hue: Color = .red
     
@@ -54,14 +54,14 @@ struct IAExampleTwoView: View {
                     // change is animated or not.
                     // When useAnimation is true, the linear animation effect with a duration of 2.5 seconds will be used.
                     // When useAnimation is false, there will be no animation.
-//                    .animation(useAnimation ? .linear(duration: 2.5) : .none)
+                    .animation(useAnimation ? .linear(duration: 2.5) : .none)
                 
                 Spacer()
                 
                 // To control whether state changes are animated
                 Toggle("Animate state change", isOn: $useAnimation)
                     .padding()
-
+ 
                 Text("To see the animation, remember to remove the comment on line 57 of **IAExampleTwoView.swift** ☺️")
                     .font(.caption)
                     .padding()
@@ -74,7 +74,7 @@ struct IAExampleTwoView: View {
                         hideView()
                     }
                 }
-            }            
+            }
             
         }
         
@@ -88,7 +88,7 @@ struct IAExampleTwoView: View {
     }
     
 }
-
+ 
 struct IAExampleTwoView_Previews: PreviewProvider {
     static var previews: some View {
         IAExampleTwoView(showThisView: .constant(true))
