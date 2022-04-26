@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct AssignmentAnimationView: View {
+    let totalTime: Double
+    @State var timePassed = 0.0
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Circle()
+                .trim(from: 0, to: totalTime - timePassed)
+                .stroke(Color.red, lineWidth: 15)
+                .frame(width: 200, height: 200)
+                .rotationEffect(.degrees(-90))
+                .padding()
+            Button(action: {
+                timePassed = totalTime
+            },
+                   label: {
+                Text("Start Timer")
+            })
+            .padding()
+        }
     }
 }
 
 struct AssignmentAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentAnimationView()
+        AssignmentAnimationView(totalTime: 100.0)
     }
 }
