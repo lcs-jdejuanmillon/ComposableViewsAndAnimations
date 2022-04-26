@@ -11,23 +11,19 @@ struct AssignmentAnimationView: View {
     let totalTime: Double
     @State var timePassed = 0.0
     var body: some View {
-        VStack(spacing: 20) {
-            Button(action: {
-                
-            },
-                   label: {
-                Text("Start Timer")
-            })
+        ZStack {
             Circle()
                 .trim(from: 0, to: (totalTime - timePassed) / totalTime)
                 .stroke(Color.red, lineWidth: 15)
                 .frame(width: 200, height: 200)
                 .rotationEffect(.degrees(-90))
-                .onTapGesture {
-                    withAnimation(.linear(duration: totalTime)) {
-                        timePassed = totalTime
-                    }
-                }
+            Text("\(Int(totalTime - timePassed))")
+                .font(.title)
+        }
+        .onTapGesture {
+            withAnimation(.linear(duration: totalTime)) {
+                timePassed = totalTime
+            }
         }
     }
 }
