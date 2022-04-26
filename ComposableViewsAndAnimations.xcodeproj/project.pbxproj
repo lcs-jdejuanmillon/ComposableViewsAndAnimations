@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D3FA79A28182C3200D2553A /* AssignmentAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3FA79928182C3100D2553A /* AssignmentAnimationView.swift */; };
 		0E84E4E825E547660052BC69 /* IAExampleOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4E725E547650052BC69 /* IAExampleOneView.swift */; };
 		0E84E4F025E591F90052BC69 /* FontsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4EF25E591F90052BC69 /* FontsView.swift */; };
 		0E84E4F625E598470052BC69 /* TimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4F525E598470052BC69 /* TimingView.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D3FA79928182C3100D2553A /* AssignmentAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentAnimationView.swift; sourceTree = "<group>"; };
 		0E84E4E725E547650052BC69 /* IAExampleOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAExampleOneView.swift; sourceTree = "<group>"; };
 		0E84E4EF25E591F90052BC69 /* FontsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsView.swift; sourceTree = "<group>"; };
 		0E84E4F525E598470052BC69 /* TimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			children = (
 				81331FB625E736AA00CFDB02 /* CustomComposableDescriptionView.swift */,
 				81331FBA25E736B600CFDB02 /* CustomComposableView.swift */,
+				0D3FA79928182C3100D2553A /* AssignmentAnimationView.swift */,
 			);
 			path = Assignment;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				81331FAF25E729D600CFDB02 /* EncouragementDescriptionView.swift in Sources */,
 				81331FB725E736AA00CFDB02 /* CustomComposableDescriptionView.swift in Sources */,
 				0E8E8B0525E5442100012516 /* ImplicitAnimationsView.swift in Sources */,
+				0D3FA79A28182C3200D2553A /* AssignmentAnimationView.swift in Sources */,
 				81D2F46925E57FAE00ACF089 /* EAExampleOneView.swift in Sources */,
 				0E84E4F025E591F90052BC69 /* FontsView.swift in Sources */,
 				81D2F48325E7199300ACF089 /* TutorialsView.swift in Sources */,
