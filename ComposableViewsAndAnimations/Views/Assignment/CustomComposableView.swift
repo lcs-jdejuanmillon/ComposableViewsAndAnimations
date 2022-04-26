@@ -20,6 +20,11 @@ struct CustomComposableView: View {
                 .foregroundColor(.white)
         }
         .offset(x: xOffset, y: 0)
+        .animation {
+            Animation
+                .easeInOut(duration: 2)
+                .repeatForever(autoreverses: true)
+        }
         .onReceive(timer) { input in
             // Move the circle and text over to the right
             xOffset = 100.0
