@@ -12,31 +12,53 @@ struct AssignmentAnimationView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var timePassed = 0.0
     @State var isTimerRunning = false
+    @State var timePassedNoAnimation = 0.0
+    @State var firstTime = true
     var body: some View {
         VStack(spacing: 20) {
-            ZStack {
-                Image(systemName: "pause.circle")
-                    .opacity(isTimerRunning ? 1.0 : 0.0)
-                Image(systemName: "play.circle")
-                    .opacity(isTimerRunning ? 0.0 : 1.0)
-            }
-            .onTapGesture {
-                isTimerRunning = !isTimerRunning
-            }
             ZStack {
                 Circle()
                     .trim(from: 0, to: (totalTime - timePassed) / totalTime)
                     .stroke(Color.red, lineWidth: 15)
                     .frame(width: 200, height: 200)
                     .rotationEffect(.degrees(-90))
-                Text("\(totalTime - timePassed)")
+                    .onReceive(timer) { input in
+                        if isTimerRunning {
+                                if timePassed < totalTime {
+                                    withAnimation(.linear(duration: 1)) {
+                                        timePassed += 1
+                                    }
+                                    if firstTime {
+                                        firstTime = false
+                                    }
+                                    else {
+                                    timePassedNoAnimation += 1
+                                    }
+                                }
+                                else {
+                                    timePassedNoAnimation = 0.0
+                                    timePassed = 0.0
+                                    isTimerRunning = false
+                                    firstTime = true
+                                }
+                            }
+                    }
+                
+                Text("\(Int(totalTime - timePassedNoAnimation))")
                     .font(.title)
             }
+            Image(systemName: (isTimerRunning ? "pause.circle" : "play.circle"))
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                .onTapGesture {
+                    isTimerRunning = !isTimerRunning
+                }
         }
     }
 }
 struct AssignmentAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentAnimationView(totalTime: 100.0)
+        AssignmentAnimationView(totalTime: 10.0)
     }
 }
