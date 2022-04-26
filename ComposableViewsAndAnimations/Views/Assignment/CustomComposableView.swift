@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct CustomComposableView: View {
+    // MARK: Stored properties
+    @State var xOffset = 0.0
+    
+    // MARK: Computed properties
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Circle()
+                .frame(width: 50, height: 50)
+            Text("OK")
+                .foregroundColor(.white)
+        }
+        .offset(x: xOffset, y: 0)
+        .onReceive(timer) { input in
+            // Move the circle and text over to the right
+            xOffset = 100.0
+            
+            // Turn off the timer
+            timer.upstream.connect().cancel()
+        }
     }
 }
 
