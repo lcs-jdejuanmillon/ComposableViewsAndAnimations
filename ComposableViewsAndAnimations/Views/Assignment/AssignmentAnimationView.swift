@@ -19,7 +19,10 @@ struct AssignmentAnimationView: View {
             ZStack {
                 Circle()
                     .trim(from: 0, to: (totalTime - timePassed) / totalTime)
-                    .stroke(Color.red, lineWidth: 15)
+                    .stroke(Color(hue: (totalTime - timePassed) / totalTime / 3,
+                                  saturation: 1.0,
+                                  brightness: 1.0),
+                            lineWidth: 20)
                     .frame(width: 200, height: 200)
                     .rotationEffect(.degrees(-90))
                     .onReceive(timer) { input in
