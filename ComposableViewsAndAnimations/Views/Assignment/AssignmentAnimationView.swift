@@ -21,7 +21,7 @@ struct AssignmentAnimationView: View {
                     .opacity(isTimerRunning ? 0.0 : 1.0)
             }
             .onTapGesture {
-                isTimerRunning != isTimerRunning
+                isTimerRunning = !isTimerRunning
             }
             ZStack {
                 Circle()
