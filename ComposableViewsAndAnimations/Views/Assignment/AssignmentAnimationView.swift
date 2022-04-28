@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AssignmentAnimationView: View {
     let totalTime: Double
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var timePassed = 0.0
     @State var isTimerRunning = false
     @State var timePassedNoAnimation = 0.0
@@ -28,9 +28,9 @@ struct AssignmentAnimationView: View {
                         if isTimerRunning {
                                 if timePassed < totalTime {
                                     withAnimation(.linear(duration: 1)) {
-                                        timePassed += 1
+                                        timePassed += 0.01
                                     }
-                                    timePassedNoAnimation += 1
+                                    timePassedNoAnimation += 0.01
                                 }
                                 else {
                                     timePassedNoAnimation = 0.0
