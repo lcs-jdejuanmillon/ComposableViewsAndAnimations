@@ -45,7 +45,7 @@ struct CustomComposableDescriptionView: View {
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: AssignmentAnimationView(totalTime: 15.0, decimalsShown: decimalsShown)) {
+                NavigationLink(destination: AssignmentAnimationView(totalTime: 15.0, decimalsShown: Int(decimalsShown))) {
                     SimpleListItemView(title: "My Composable View",
                                        caption: "A brief description of my view")
                 }
