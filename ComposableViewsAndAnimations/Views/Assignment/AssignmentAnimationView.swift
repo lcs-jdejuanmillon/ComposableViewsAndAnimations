@@ -13,7 +13,6 @@ struct AssignmentAnimationView: View {
     @State var timePassed = 0.0
     @State var isTimerRunning = false
     @State var timePassedNoAnimation = 0.0
-    @State var firstTime = true
     var body: some View {
         VStack(spacing: 20) {
             ZStack {
@@ -31,18 +30,12 @@ struct AssignmentAnimationView: View {
                                     withAnimation(.linear(duration: 1)) {
                                         timePassed += 1
                                     }
-                                    if firstTime {
-                                        firstTime = false
-                                    }
-                                    else {
                                     timePassedNoAnimation += 1
-                                    }
                                 }
                                 else {
                                     timePassedNoAnimation = 0.0
                                     timePassed = 0.0
                                     isTimerRunning = false
-                                    firstTime = true
                                 }
                             }
                     }

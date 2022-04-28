@@ -101,7 +101,7 @@ struct ContentView: View {
                 
                 Section(header: Text("Animation")) {
 
-                    NavigationLink(destination: AssignmentAnimationView(totalTime: 1.0)) {
+                    NavigationLink(destination: AssignmentAnimationView(totalTime: 10.0)) {
                         
                         SimpleListItemView(title: "Create a composable view",
                                            caption: "Make your own reusable view using animations")

@@ -99,7 +99,6 @@ struct ExerciseThreeView: View {
             }
 
         }
-        
     }
     
     // MARK: Functions
