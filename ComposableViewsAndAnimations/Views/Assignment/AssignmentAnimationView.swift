@@ -26,30 +26,44 @@ struct AssignmentAnimationView: View {
                     .rotationEffect(.degrees(-90))
                     .onReceive(timer) { input in
                         if isTimerRunning {
-                                if timePassed < totalTime {
-                                    withAnimation(.linear(duration: 1)) {
-                                        timePassed += 0.01
-                                    }
-                                    timePassedNoAnimation += 0.01
+                            if timePassed < totalTime {
+                                withAnimation(.linear(duration: 1)) {
+                                    timePassed += 0.01
                                 }
-                                else {
-                                    timePassedNoAnimation = 0.0
-                                    timePassed = 0.0
-                                    isTimerRunning = false
-                                }
+                                timePassedNoAnimation += 0.01
                             }
+                            else {
+                                timePassedNoAnimation = 0.0
+                                timePassed = 0.0
+                                isTimerRunning = false
+                            }
+                        }
                     }
                 
                 Text("\(Int(totalTime - timePassedNoAnimation))")
                     .font(.title)
             }
-            Image(systemName: (isTimerRunning ? "pause.circle" : "play.circle"))
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50, height: 50)
-                .onTapGesture {
-                    isTimerRunning = !isTimerRunning
-                }
+            HStack {
+                Spacer()
+                Image(systemName: "stop.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+                    .onTapGesture {
+                        timePassedNoAnimation = 0.0
+                        timePassed = 0.0
+                        isTimerRunning = false
+                    }
+                Spacer()
+                Image(systemName: (isTimerRunning ? "pause.circle" : "play.circle"))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+                    .onTapGesture {
+                        isTimerRunning = !isTimerRunning
+                    }
+                Spacer()
+            }
         }
     }
 }
