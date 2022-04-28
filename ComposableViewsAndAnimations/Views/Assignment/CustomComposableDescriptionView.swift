@@ -11,7 +11,8 @@ struct CustomComposableDescriptionView: View {
     
     // MARK: Stored properties
     @State private var phrase: String = ""
-    
+    @State var decimalsShown = 1.0
+    @State var e = 1.0
     // MARK: Computed properties
     var body: some View {
         
@@ -25,18 +26,26 @@ struct CustomComposableDescriptionView: View {
                     .padding(.top)
                 
                 Text("""
-                    Replace this with a description of how to use this view.
-
-                    If the view accepts a parameter, provide a control to enter the input below.
+                    The view is a circular clock that continously drains as time passes and shows how much time is left until it finished. The clock can be paused/continued and stopped with the buttons in the view. The number of decimals shown and the time for the clock can be changed below.
                     """)
                 
-                TextField("Enter an input value", text: $phrase)
-                
+                TextField("Time in Seconds", text: $phrase)
+                Text("Number of Decimals Shown")
+                Slider(value: $decimalsShown,
+                       in: 0...2,
+                       step: 1.0,
+                       label: {
+                    Text("Number of decimals Shown")
+                }, minimumValueLabel: {
+                    Text("0")
+                }, maximumValueLabel: {
+                    Text("2")
+                })
             }
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: CustomComposableView()) {
+                NavigationLink(destination: AssignmentAnimationView(totalTime: 15.0, decimalsShown: decimalsShown)) {
                     SimpleListItemView(title: "My Composable View",
                                        caption: "A brief description of my view")
                 }

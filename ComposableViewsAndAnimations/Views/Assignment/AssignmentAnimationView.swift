@@ -70,6 +70,6 @@ struct AssignmentAnimationView: View {
 }
 struct AssignmentAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentAnimationView(totalTime: 10.0, decimalsShown: 1)
+        AssignmentAnimationView(totalTime: 10.0, decimalsShown: 0)
     }
 }
