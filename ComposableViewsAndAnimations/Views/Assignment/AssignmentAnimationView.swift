@@ -13,6 +13,7 @@ struct AssignmentAnimationView: View {
     @State var timePassed = 0.0
     @State var isTimerRunning = false
     @State var timePassedNoAnimation = 0.0
+    @State var decimalsShown: Int
     var body: some View {
         VStack(spacing: 20) {
             ZStack {
@@ -40,7 +41,7 @@ struct AssignmentAnimationView: View {
                         }
                     }
                 
-                Text("\(Int(totalTime - timePassedNoAnimation))")
+                Text(String(format: "%.\(decimalsShown)f", totalTime - timePassedNoAnimation))
                     .font(.title)
             }
             HStack {
@@ -69,6 +70,6 @@ struct AssignmentAnimationView: View {
 }
 struct AssignmentAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentAnimationView(totalTime: 10.0)
+        AssignmentAnimationView(totalTime: 10.0, decimalsShown: 1)
     }
 }
