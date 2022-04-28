@@ -10,9 +10,17 @@ import SwiftUI
 struct CustomComposableDescriptionView: View {
     
     // MARK: Stored properties
-    @State private var phrase: String = ""
+    @State private var inputTime: String = ""
     @State var decimalsShown = 1.0
-    @State var e = 1.0
+    var time: Double {
+        if let time = Double(inputTime) {
+            return time
+        }
+        else {
+            return 10.0
+        }
+    }
+    
     // MARK: Computed properties
     var body: some View {
         
@@ -29,7 +37,7 @@ struct CustomComposableDescriptionView: View {
                     The view is a circular clock that continously drains as time passes and shows how much time is left until it finished. The clock can be paused/continued and stopped with the buttons in the view. The number of decimals shown and the time for the clock can be changed below.
                     """)
                 
-                TextField("Time in Seconds", text: $phrase)
+                TextField("Time in Seconds", text: $inputTime)
                 Text("Number of Decimals Shown")
                 Slider(value: $decimalsShown,
                        in: 0...2,
@@ -45,9 +53,9 @@ struct CustomComposableDescriptionView: View {
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: AssignmentAnimationView(totalTime: 15.0, decimalsShown: Int(decimalsShown))) {
-                    SimpleListItemView(title: "My Composable View",
-                                       caption: "A brief description of my view")
+                NavigationLink(destination: AssignmentAnimationView(totalTime: time, decimalsShown: Int(decimalsShown))) {
+                    SimpleListItemView(title: "Simple timer",
+                                       caption: "Shows how many seconds are left")
                 }
             }
             
