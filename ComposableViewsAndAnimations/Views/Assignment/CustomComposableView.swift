@@ -81,6 +81,7 @@ struct ComposableViewsAndAnimations: View {
                     .font(.title)
                     .opacity(showTime ? 1.0 : 0.0)
             }
+            .opacity(runAutomatically && timeLeftNoAnimation == 0 ? 0.0 : 1.0)
             HStack {
                 Spacer()
                 Image(systemName: "stop.circle")
