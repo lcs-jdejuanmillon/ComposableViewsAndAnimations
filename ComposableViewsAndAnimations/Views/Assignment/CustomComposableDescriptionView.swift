@@ -62,8 +62,8 @@ struct CustomComposableDescriptionView: View {
             List {
                 NavigationLink(destination: ComposableViewsAndAnimations(totalTime: time,
                                                                          decimalsShown: Int(decimalsShown),
-                                                                         showTime: true,
-                                                                         timeFormat: false,
+                                                                         showTime: showTime,
+                                                                         timeFormat: timeFormat,
                                                                         runAutomatically: runAutomatically)) {
                     SimpleListItemView(title: "Simple timer",
                                        caption: "Shows how many seconds are left")

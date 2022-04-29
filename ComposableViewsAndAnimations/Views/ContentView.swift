@@ -98,17 +98,6 @@ struct ContentView: View {
                     }
 
                 }
-                
-                Section(header: Text("Animation")) {
-
-                    NavigationLink(destination: AssignmentAnimationView(totalTime: 10.0, decimalsShown: 1)) {
-                        
-                        SimpleListItemView(title: "Create a composable view",
-                                           caption: "Make your own reusable view using animations")
-
-                    }
-
-                }
             }
             .listStyle(GroupedListStyle())
 
