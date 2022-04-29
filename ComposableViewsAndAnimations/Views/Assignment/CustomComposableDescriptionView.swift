@@ -17,11 +17,11 @@ struct CustomComposableDescriptionView: View {
     @State var runAutomatically = false
     var time: Double {
         if let time = Double(inputTime) {
-            return time
+            if time > 0.05 {
+                return time
+            }
         }
-        else {
-            return 10.0
-        }
+        return -1.0
     }
     
     // MARK: Computed properties
@@ -41,6 +41,7 @@ struct CustomComposableDescriptionView: View {
                     """)
                 
                 TextField("Time in Seconds", text: $inputTime)
+                    .foregroundColor(time == -1 ? .red : .primary)
                 Text("Number of Decimals Shown")
                 Slider(value: $decimalsShown,
                        in: 0...2,
@@ -68,6 +69,7 @@ struct CustomComposableDescriptionView: View {
                                        caption: "Shows how many seconds are left")
                 }
             }
+            .opacity(time == -1 ? 0.0 : 1.0)
             
         }
         .padding()
