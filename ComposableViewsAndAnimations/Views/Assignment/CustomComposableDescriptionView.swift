@@ -60,7 +60,8 @@ struct CustomComposableDescriptionView: View {
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: ComposableViewsAndAnimations(totalTime: time,
+                NavigationLink(destination: ComposableViewsAndAnimations(size: 200.0,
+                                                                         totalTime: time,
                                                                          decimalsShown: Int(decimalsShown),
                                                                          showTime: showTime,
                                                                          timeFormat: timeFormat,

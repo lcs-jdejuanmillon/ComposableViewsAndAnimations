@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D11E779281C6A0E00B4750F /* OneDimensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E778281C6A0E00B4750F /* OneDimensionView.swift */; };
+		0D11E77B281C6A2200B4750F /* ProjectileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E77A281C6A2200B4750F /* ProjectileView.swift */; };
+		0D11E77D281C6B6600B4750F /* KinematicsChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */; };
 		0E84E4E825E547660052BC69 /* IAExampleOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4E725E547650052BC69 /* IAExampleOneView.swift */; };
 		0E84E4F025E591F90052BC69 /* FontsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4EF25E591F90052BC69 /* FontsView.swift */; };
 		0E84E4F625E598470052BC69 /* TimingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4F525E598470052BC69 /* TimingView.swift */; };
@@ -34,6 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D11E778281C6A0E00B4750F /* OneDimensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDimensionView.swift; sourceTree = "<group>"; };
+		0D11E77A281C6A2200B4750F /* ProjectileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectileView.swift; sourceTree = "<group>"; };
+		0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsChoosingView.swift; sourceTree = "<group>"; };
 		0E84E4E725E547650052BC69 /* IAExampleOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAExampleOneView.swift; sourceTree = "<group>"; };
 		0E84E4EF25E591F90052BC69 /* FontsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsView.swift; sourceTree = "<group>"; };
 		0E84E4F525E598470052BC69 /* TimingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingView.swift; sourceTree = "<group>"; };
@@ -73,6 +79,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D11E777281C68F000B4750F /* Kinematics */ = {
+			isa = PBXGroup;
+			children = (
+				0D11E778281C6A0E00B4750F /* OneDimensionView.swift */,
+				0D11E77A281C6A2200B4750F /* ProjectileView.swift */,
+				0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */,
+			);
+			path = Kinematics;
+			sourceTree = "<group>";
+		};
 		0E84E4EE25E591D90052BC69 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +153,7 @@
 				81D2F48025E7195F00ACF089 /* Tutorials */,
 				81D2F48825E71F5D00ACF089 /* ComposableViewExamples */,
 				81331FB525E7365400CFDB02 /* Assignment */,
+				0D11E777281C68F000B4750F /* Kinematics */,
 				0E91AA9C25E5460F00115011 /* External */,
 			);
 			path = Views;
@@ -285,6 +302,8 @@
 				81331FB725E736AA00CFDB02 /* CustomComposableDescriptionView.swift in Sources */,
 				0E8E8B0525E5442100012516 /* ImplicitAnimationsView.swift in Sources */,
 				81D2F46925E57FAE00ACF089 /* EAExampleOneView.swift in Sources */,
+				0D11E779281C6A0E00B4750F /* OneDimensionView.swift in Sources */,
+				0D11E77D281C6B6600B4750F /* KinematicsChoosingView.swift in Sources */,
 				0E84E4F025E591F90052BC69 /* FontsView.swift in Sources */,
 				81D2F48325E7199300ACF089 /* TutorialsView.swift in Sources */,
 				81D2F47625E5851600ACF089 /* ExerciseOneView.swift in Sources */,
@@ -296,6 +315,7 @@
 				0E8E8AF225E5434100012516 /* ComposableViewsAndAnimationsApp.swift in Sources */,
 				81331FB225E72A5A00CFDB02 /* EncouragementView.swift in Sources */,
 				81D2F45B25E5770300ACF089 /* IAExampleTwoView.swift in Sources */,
+				0D11E77B281C6A2200B4750F /* ProjectileView.swift in Sources */,
 				0E8E8B0A25E544D700012516 /* SimpleListItemView.swift in Sources */,
 				81D2F47925E5855600ACF089 /* ExerciseTwoView.swift in Sources */,
 				81D2F47225E5843200ACF089 /* ExercisesView.swift in Sources */,

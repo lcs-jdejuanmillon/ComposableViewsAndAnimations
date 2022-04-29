@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ComposableViewsAndAnimations: View {
+    let size: Double
     let totalTime: Double
     var decimalsShown: Int
     var showTime: Bool
@@ -39,15 +40,15 @@ struct ComposableViewsAndAnimations: View {
         return "\(Int(timeLeftNoAnimation)/86400):\(hours):\(minutes):\(seconds)"
     }
     var body: some View {
-        VStack(spacing: 20) {
+        VStack() {
             ZStack {
                 Circle()
                     .trim(from: 0, to: (totalTime - timePassed) / totalTime)
                     .stroke(Color(hue: (totalTime - timePassed) / totalTime / 3,
                                   saturation: 1.0,
                                   brightness: 1.0),
-                            lineWidth: 20)
-                    .frame(width: 200, height: 200)
+                            lineWidth: size / 10)
+                    .frame(width: size, height: size)
                     .rotationEffect(.degrees(-90))
                     .onReceive(timer) { input in
                         if runAutomatically {
@@ -78,16 +79,17 @@ struct ComposableViewsAndAnimations: View {
                         }
                     }
                 Text(time)
-                    .font(.title)
                     .opacity(showTime ? 1.0 : 0.0)
+                    
+                    .frame(width: size * 0.9, height: size / 2)
             }
             .opacity(runAutomatically && timeLeftNoAnimation == 0 ? 0.0 : 1.0)
+            Spacer()
             HStack {
-                Spacer()
                 Image(systemName: "stop.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
+                    .frame(width: size / 4, height: size / 4)
                     .onTapGesture {
                         timePassedNoAnimation = 0.0
                         timePassed = 0.0
@@ -97,14 +99,14 @@ struct ComposableViewsAndAnimations: View {
                 Image(systemName: (isTimerRunning ? "pause.circle" : "play.circle"))
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
+                    .frame(width: size / 4, height: size / 4)
                     .onTapGesture {
                         isTimerRunning = !isTimerRunning
                     }
-                Spacer()
             }
             .opacity(runAutomatically ? 0.0 : 1.0)
         }
+        .frame(width: size, height: size * 1.35)
     }
     func format(time: Double, limit: Int, isSeconds: Bool) -> String {
         let t = time - Double(Int(time) / limit * limit)
@@ -117,7 +119,8 @@ struct ComposableViewsAndAnimations: View {
 }
 struct ComposableViewsAndAnimations_Previews: PreviewProvider {
     static var previews: some View {
-        ComposableViewsAndAnimations(totalTime: 10.0,
+        ComposableViewsAndAnimations(size: 200.0,
+                                     totalTime: 10.0,
                                      decimalsShown: 0,
                                      showTime: true,
                                      timeFormat: true,
