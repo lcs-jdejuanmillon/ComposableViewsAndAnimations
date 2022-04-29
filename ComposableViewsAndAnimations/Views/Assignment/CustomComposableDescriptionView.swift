@@ -12,6 +12,9 @@ struct CustomComposableDescriptionView: View {
     // MARK: Stored properties
     @State private var inputTime: String = ""
     @State var decimalsShown = 1.0
+    @State var showTime = true
+    @State var timeFormat = false
+    @State var runAutomatically = false
     var time: Double {
         if let time = Double(inputTime) {
             return time
@@ -34,7 +37,7 @@ struct CustomComposableDescriptionView: View {
                     .padding(.top)
                 
                 Text("""
-                    The view is a circular clock that continously drains as time passes and shows how much time is left until it finished. The clock can be paused/continued and stopped with the buttons in the view. The number of decimals shown and the time for the clock can be changed below.
+                    The view is a circular clock that drains and shows how much time is left. It can be paused/continued and stopped with the buttons in the view. The number of decimals shown, the total time, and more can be changed below.
                     """)
                 
                 TextField("Time in Seconds", text: $inputTime)
@@ -49,11 +52,18 @@ struct CustomComposableDescriptionView: View {
                 }, maximumValueLabel: {
                     Text("2")
                 })
+                Toggle(isOn: $showTime, label: {Text("Show Time Left")})
+                Toggle(isOn: $timeFormat, label: {Text("Show Hours Minutes Seconds")})
+                Toggle(isOn: $runAutomatically, label: {Text("Run Automatically")})
             }
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: AssignmentAnimationView(totalTime: time, decimalsShown: Int(decimalsShown))) {
+                NavigationLink(destination: ComposableViewsAndAnimations(totalTime: time,
+                                                                         decimalsShown: Int(decimalsShown),
+                                                                         showTime: true,
+                                                                         timeFormat: false,
+                                                                        runAutomatically: runAutomatically)) {
                     SimpleListItemView(title: "Simple timer",
                                        caption: "Shows how many seconds are left")
                 }
