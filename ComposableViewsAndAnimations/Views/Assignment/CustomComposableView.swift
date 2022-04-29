@@ -15,36 +15,35 @@ struct ComposableViewsAndAnimations: View {
     var timeFormat: Bool
     let runAutomatically: Bool
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    @State var timePassed = 0.0
     @State var isTimerRunning = false
-    @State var timePassedNoAnimation = 0.0
-    var timeLeftNoAnimation: Double {
-        return totalTime - timePassedNoAnimation
+    @State var timePassed = 0.0
+    var timeLeft: Double {
+        return totalTime - timePassed
     }
     var time: String {
         if !timeFormat {
-            return String(format: "%.\(decimalsShown)f", timeLeftNoAnimation)
+            return String(format: "%.\(decimalsShown)f", timeLeft)
         }
-        let seconds = format(time: timeLeftNoAnimation, limit: 60, isSeconds: true)
-        if timeLeftNoAnimation < 60 {
+        let seconds = format(time: timeLeft, limit: 60, isSeconds: true)
+        if timeLeft < 60 {
             return seconds
         }
-        let minutes = format(time: Double(Int(timeLeftNoAnimation) / 60), limit: 60, isSeconds: false)
-        if timeLeftNoAnimation < 3600 {
+        let minutes = format(time: Double(Int(timeLeft) / 60), limit: 60, isSeconds: false)
+        if timeLeft < 3600 {
             return "\(minutes):\(seconds)"
         }
-        let hours = format(time: Double(Int(timeLeftNoAnimation) / 3600), limit: 24, isSeconds: false)
-        if timeLeftNoAnimation < 86400 {
+        let hours = format(time: Double(Int(timeLeft) / 3600), limit: 24, isSeconds: false)
+        if timeLeft < 86400 {
             return "\(hours):\(minutes):\(seconds)"
         }
-        return "\(Int(timeLeftNoAnimation)/86400):\(hours):\(minutes):\(seconds)"
+        return "\(Int(timeLeft)/86400):\(hours):\(minutes):\(seconds)"
     }
     var body: some View {
         VStack() {
             ZStack {
                 Circle()
-                    .trim(from: 0, to: (totalTime - timePassed) / totalTime)
-                    .stroke(Color(hue: (totalTime - timePassed) / totalTime / 3,
+                    .trim(from: 0, to: timeLeft / totalTime)
+                    .stroke(Color(hue: timeLeft / totalTime / 3,
                                   saturation: 1.0,
                                   brightness: 1.0),
                             lineWidth: size / 10)
@@ -52,11 +51,8 @@ struct ComposableViewsAndAnimations: View {
                     .rotationEffect(.degrees(-90))
                     .onReceive(timer) { input in
                         if runAutomatically {
-                            if timeLeftNoAnimation > 0.01 {
-                                withAnimation(.linear) {
-                                    timePassed += 0.01
-                                }
-                                timePassedNoAnimation += 0.01
+                            if timeLeft > 0.01 {
+                                timePassed += 0.01
                             }
                             else {
                                 timer.upstream.connect().cancel()
@@ -64,14 +60,10 @@ struct ComposableViewsAndAnimations: View {
                         }
                         else {
                             if isTimerRunning {
-                                if timeLeftNoAnimation > 0.01 {
-                                    withAnimation(.linear(duration: 0.01)) {
-                                        timePassed += 0.01
-                                    }
-                                    timePassedNoAnimation += 0.01
+                                if timeLeft > 0.01 {
+                                    timePassed += 0.01
                                 }
                                 else {
-                                    timePassedNoAnimation = 0.0
                                     timePassed = 0.0
                                     isTimerRunning = false
                                 }
@@ -82,7 +74,7 @@ struct ComposableViewsAndAnimations: View {
                     .opacity(showTime ? 1.0 : 0.0)
                     .font(.custom("sf", size: size / 6))
             }
-            .opacity(runAutomatically && timeLeftNoAnimation == 0 ? 0.0 : 1.0)
+            .opacity(runAutomatically && timeLeft == 0 ? 0.0 : 1.0)
             Spacer()
             HStack {
                 Image(systemName: "stop.circle")
@@ -90,7 +82,7 @@ struct ComposableViewsAndAnimations: View {
                     .scaledToFit()
                     .frame(width: size / 4, height: size / 4)
                     .onTapGesture {
-                        timePassedNoAnimation = 0.0
+                        timePassed = 0.0
                         timePassed = 0.0
                         isTimerRunning = false
                     }
