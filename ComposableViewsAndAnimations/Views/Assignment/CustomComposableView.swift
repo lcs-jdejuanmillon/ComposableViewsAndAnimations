@@ -80,8 +80,7 @@ struct ComposableViewsAndAnimations: View {
                     }
                 Text(time)
                     .opacity(showTime ? 1.0 : 0.0)
-                    
-                    .frame(width: size * 0.9, height: size / 2)
+                    .font(.custom("sf", size: size / 6))
             }
             .opacity(runAutomatically && timeLeftNoAnimation == 0 ? 0.0 : 1.0)
             Spacer()
@@ -120,8 +119,8 @@ struct ComposableViewsAndAnimations: View {
 struct ComposableViewsAndAnimations_Previews: PreviewProvider {
     static var previews: some View {
         ComposableViewsAndAnimations(size: 200.0,
-                                     totalTime: 10.0,
-                                     decimalsShown: 0,
+                                     totalTime: 100.0,
+                                     decimalsShown: 2,
                                      showTime: true,
                                      timeFormat: true,
                                      runAutomatically: false)
