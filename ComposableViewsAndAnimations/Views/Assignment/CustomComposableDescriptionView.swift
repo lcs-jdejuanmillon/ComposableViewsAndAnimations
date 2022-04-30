@@ -61,6 +61,8 @@ struct CustomComposableDescriptionView: View {
             
             List {
                 NavigationLink(destination: ComposableViewsAndAnimations(size: 200.0,
+                                                                         width: 0.1,
+                                                                         fontSize: 0.15,
                                                                          totalTime: time,
                                                                          decimalsShown: Int(decimalsShown),
                                                                          showTime: showTime,

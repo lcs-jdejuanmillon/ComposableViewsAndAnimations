@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ComposableViewsAndAnimations: View {
     let size: Double
+    let width: Double
+    let fontSize: Double
     let totalTime: Double
     var decimalsShown: Int
     var showTime: Bool
@@ -17,6 +19,7 @@ struct ComposableViewsAndAnimations: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var isTimerRunning = false
     @State var timePassed = 0.0
+    @State var opacityOfView = 1.0
     var timeLeft: Double {
         return totalTime - timePassed
     }
@@ -46,7 +49,7 @@ struct ComposableViewsAndAnimations: View {
                     .stroke(Color(hue: timeLeft / totalTime / 3,
                                   saturation: 1.0,
                                   brightness: 1.0),
-                            lineWidth: size / 10)
+                            lineWidth: size * width)
                     .frame(width: size, height: size)
                     .rotationEffect(.degrees(-90))
                     .onReceive(timer) { input in
@@ -55,6 +58,7 @@ struct ComposableViewsAndAnimations: View {
                                 timePassed += 0.01
                             }
                             else {
+                                opacityOfView = 0.0
                                 timer.upstream.connect().cancel()
                             }
                         }
@@ -72,9 +76,9 @@ struct ComposableViewsAndAnimations: View {
                     }
                 Text(time)
                     .opacity(showTime ? 1.0 : 0.0)
-                    .font(.custom("sf", size: size / 6))
+                    .font(.custom("sf", size: size * fontSize))
             }
-            .opacity(runAutomatically && timeLeft == 0 ? 0.0 : 1.0)
+            .opacity(opacityOfView)
             Spacer()
             HStack {
                 Image(systemName: "stop.circle")
@@ -111,10 +115,12 @@ struct ComposableViewsAndAnimations: View {
 struct ComposableViewsAndAnimations_Previews: PreviewProvider {
     static var previews: some View {
         ComposableViewsAndAnimations(size: 200.0,
-                                     totalTime: 100.0,
+                                     width: 0.1,
+                                     fontSize: 0.15,
+                                     totalTime: 10.0,
                                      decimalsShown: 2,
                                      showTime: true,
                                      timeFormat: true,
-                                     runAutomatically: false)
+                                     runAutomatically: true)
     }
 }

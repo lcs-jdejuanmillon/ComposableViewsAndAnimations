@@ -16,11 +16,12 @@ struct OneDimensionView: View {
     var body: some View {
         VStack {
             HStack {
-                Spacer()
                 ComposableViewsAndAnimations(size: 50.0,
+                                             width: 0.2,
+                                             fontSize: 0.5,
                                              totalTime: totalTime,
                                              decimalsShown: 0,
-                                             showTime: false,
+                                             showTime: true,
                                              timeFormat: false,
                                              runAutomatically: true)
                 
