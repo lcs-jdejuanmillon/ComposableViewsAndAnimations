@@ -19,7 +19,6 @@ struct ComposableViewsAndAnimations: View {
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var isTimerRunning = false
     @State var timePassed = 0.0
-    @State var opacityOfView = 1.0
     var timeLeft: Double {
         return totalTime - timePassed
     }
@@ -58,7 +57,6 @@ struct ComposableViewsAndAnimations: View {
                                 timePassed += 0.01
                             }
                             else {
-                                opacityOfView = 0.0
                                 timer.upstream.connect().cancel()
                             }
                         }
@@ -78,7 +76,7 @@ struct ComposableViewsAndAnimations: View {
                     .opacity(showTime ? 1.0 : 0.0)
                     .font(.custom("sf", size: size * fontSize))
             }
-            .opacity(opacityOfView)
+            .opacity(runAutomatically && timeLeft < 0.01 ? 0.0 : 1.0)
             Spacer()
             HStack {
                 Image(systemName: "stop.circle")
