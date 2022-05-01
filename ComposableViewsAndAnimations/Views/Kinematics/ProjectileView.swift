@@ -4,30 +4,28 @@
 //
 //  Created by Jacobo de Juan Millon on 2022-04-29.
 //
-
+// X = 0, Y = 1
 import SwiftUI
 
 struct ProjectileView: View {
     let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
-    let initialVelocityX: Double
-    let initialVelocityY: Double
-    let accelerationX: Double
-    let accelerationY: Double
+    let initialVelocity: [Double]
+    let acceleration: [Double]
     let totalTime: Double
     var vertexX: Double {
-        if initialVelocityX * (initialVelocityX + totalTime * accelerationX) > 0 {
+        if initialVelocity[0] * (initialVelocity[0] + totalTime * acceleration[0]) > 0 {
             return 0.0
         }
-        return -initialVelocityX / accelerationX
+        return -initialVelocity[0] / acceleration[0]
     }
     var minX: Double {
-        return min(displacement(time: totalTime, isVertical: false), min(0, displacement(time: vertexX, isVertical: false)))
+        return min(displacement(time: totalTime, dimension: 0), min(0, displacement(time: vertexX, dimension: 0)))
     }
     var maxX: Double {
-        return max(displacement(time: totalTime, isVertical: false), max(0, displacement(time: vertexX, isVertical: false)))
+        return max(displacement(time: totalTime, dimension: 0), max(0, displacement(time: vertexX, dimension: 0)))
     }
     var scaleFactor: Double {
-        return min(500 * displacement(time: totalTime, isVertical: false), 300 * displacement(time: totalTime, isVertical: true)) / displacement(time: totalTime, isVertical: false) / displacement(time: totalTime, isVertical: true)
+        return min(500 * displacement(time: totalTime, dimension: 0), 300 * displacement(time: totalTime, dimension: 1)) / displacement(time: totalTime, dimension: 0) / displacement(time: totalTime, dimension: 1)
     }
     @State var time = 0.0
     var body: some View {
@@ -35,7 +33,7 @@ struct ProjectileView: View {
             HStack {
                 Circle()
                     .frame(width: 50, height: 50)
-                    .offset(x: scaleFactor * displacement(time: time, isVertical: false), y: scaleFactor * displacement(time: time, isVertical: true))
+                    .offset(x: scaleFactor * displacement(time: time, dimension: 0), y: scaleFactor * displacement(time: time, dimension: 1))
                     .onReceive(timer) { input in
                         withAnimation(.linear(duration: totalTime)) {
                             time = totalTime
@@ -56,19 +54,14 @@ struct ProjectileView: View {
         }
         .padding()
     }
-    func displacement(time: Double, isVertical: Bool) -> Double {
-        if isVertical {
-            return time * (initialVelocityY + time * accelerationY / 2)
-        }
-        return time * (initialVelocityX + time * accelerationX / 2)
+    func displacement(time: Double, dimension: Int) -> Double {
+        return time * (initialVelocity[dimension] + time * acceleration[dimension] / 2)
     }
 }
 struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectileView(initialVelocityX: 5.0,
-                       initialVelocityY: 1.0,
-                       accelerationX: 0.0,
-                       accelerationY: 9.8,
+        ProjectileView(initialVelocity: [5.0, 1.0],
+                       acceleration: [0.0, 9.8],
                        totalTime: 5.0)
     }
 }
