@@ -12,6 +12,7 @@ struct ProjectileView: View {
     let initialVelocity: [Double]
     let acceleration: [Double]
     let totalTime: Double
+    @State var off = 0.0
     @State var time = 0.0
     var vertex: [Double] {
         var vertex = [0.0, 0.0]
@@ -37,7 +38,10 @@ struct ProjectileView: View {
         return maxDis
     }
     var scaleFactor: Double {
-        return min(500 * displacement(time: totalTime, dimension: 0), 300 * displacement(time: totalTime, dimension: 1)) / displacement(time: totalTime, dimension: 0) / displacement(time: totalTime, dimension: 1)
+        if 500 * (maxDis[0] - minDis[0]) < 300 * (maxDis[1] - minDis[1]) {
+            return 500 / (maxDis[1] - minDis[1])
+        }
+        return 300 * (maxDis[0] - minDis[0])
     }
     var body: some View {
         VStack {
@@ -71,8 +75,8 @@ struct ProjectileView: View {
 }
 struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectileView(initialVelocity: [5.0, 1.0],
-                       acceleration: [0.0, 9.8],
-                       totalTime: 5.0)
+        ProjectileView(initialVelocity: [0.0, 0.0],
+                       acceleration: [0.0, 10.0],
+                       totalTime: 2.0)
     }
 }
