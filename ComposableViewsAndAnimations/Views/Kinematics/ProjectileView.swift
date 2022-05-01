@@ -12,22 +12,33 @@ struct ProjectileView: View {
     let initialVelocity: [Double]
     let acceleration: [Double]
     let totalTime: Double
-    var vertexX: Double {
-        if initialVelocity[0] * (initialVelocity[0] + totalTime * acceleration[0]) > 0 {
-            return 0.0
+    @State var time = 0.0
+    var vertex: [Double] {
+        var vertex = [0.0, 0.0]
+        for i in 0...1 {
+            if initialVelocity[i] * (initialVelocity[i] + totalTime * acceleration[i]) <= 0 {
+                vertex[i] = -initialVelocity[i] / acceleration[i]
+            }
         }
-        return -initialVelocity[0] / acceleration[0]
+        return vertex
     }
-    var minX: Double {
-        return min(displacement(time: totalTime, dimension: 0), min(0, displacement(time: vertexX, dimension: 0)))
+    var minDis: [Double] {
+        var minDis = [0.0, 0.0]
+        for i in 0...1 {
+            minDis[i] = min(0.0, min(displacement(time: totalTime, dimension: i), displacement(time: vertex[i], dimension: i)))
+        }
+        return minDis
     }
-    var maxX: Double {
-        return max(displacement(time: totalTime, dimension: 0), max(0, displacement(time: vertexX, dimension: 0)))
+    var maxDis: [Double] {
+        var maxDis = [0.0, 0.0]
+        for i in 0...1 {
+            maxDis[i] = max(0.0, max(displacement(time: totalTime, dimension: i), displacement(time: vertex[i], dimension: i)))
+        }
+        return maxDis
     }
     var scaleFactor: Double {
         return min(500 * displacement(time: totalTime, dimension: 0), 300 * displacement(time: totalTime, dimension: 1)) / displacement(time: totalTime, dimension: 0) / displacement(time: totalTime, dimension: 1)
     }
-    @State var time = 0.0
     var body: some View {
         VStack {
             HStack {
