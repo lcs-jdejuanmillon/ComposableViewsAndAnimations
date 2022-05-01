@@ -14,13 +14,23 @@ struct ProjectileView: View {
     let accelerationX: Double
     let accelerationY: Double
     let totalTime: Double
+    
     var scaleFactor: Double {
-        return min(400 * (initialVelocityX + totalTime * accelerationX), 300 * (initialVelocityY + totalTime * accelerationY)) / totalTime / (initialVelocityX + totalTime * accelerationX) / (initialVelocityY + totalTime * accelerationY)
+        return min(500 * displacement(time: totalTime, isVertical: false), 300 * displacement(time: totalTime, isVertical: true)) / displacement(time: totalTime, isVertical: false) / displacement(time: totalTime, isVertical: true)
     }
     @State var time = 0.0
     var body: some View {
         VStack {
             HStack {
+                Circle()
+                    .frame(width: 50, height: 50)
+                    .offset(x: scaleFactor * displacement(time: time, isVertical: false), y: scaleFactor * displacement(time: time, isVertical: true))
+                    .onReceive(timer) { input in
+                        withAnimation(.linear(duration: totalTime)) {
+                            time = totalTime
+                        }
+                        timer.upstream.connect().cancel()
+                    }
                 Spacer()
                 ComposableViewsAndAnimations(size: 50.0,
                                              width: 0.2,
@@ -30,23 +40,18 @@ struct ProjectileView: View {
                                              showTime: true,
                                              timeFormat: false,
                                              runAutomatically: true)
-                
             }
-            Circle()
-                .frame(width: 50, height: 50)
-                .offset(x: scaleFactor * time * (initialVelocityX + time * accelerationX / 2), y: scaleFactor * time * (initialVelocityY + time * accelerationY / 2))
-                .onReceive(timer) { input in
-                    withAnimation(.linear(duration: 10.0)) {
-                        time = totalTime
-                    }
-                    timer.upstream.connect().cancel()
-                }
             Spacer()
         }
         .padding()
     }
+    func displacement(time: Double, isVertical: Bool) -> Double {
+        if isVertical {
+            return time * (initialVelocityY + time * accelerationY / 2)
+        }
+        return time * (initialVelocityX + time * accelerationX / 2)
+    }
 }
-
 struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectileView(initialVelocityX: 5.0,
