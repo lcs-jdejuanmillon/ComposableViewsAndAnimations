@@ -14,7 +14,18 @@ struct ProjectileView: View {
     let accelerationX: Double
     let accelerationY: Double
     let totalTime: Double
-    
+    var vertexX: Double {
+        if initialVelocityX * (initialVelocityX + totalTime * accelerationX) > 0 {
+            return 0.0
+        }
+        return -initialVelocityX / accelerationX
+    }
+    var minX: Double {
+        return min(displacement(time: totalTime, isVertical: false), min(0, displacement(time: vertexX, isVertical: false)))
+    }
+    var maxX: Double {
+        return max(displacement(time: totalTime, isVertical: false), max(0, displacement(time: vertexX, isVertical: false)))
+    }
     var scaleFactor: Double {
         return min(500 * displacement(time: totalTime, isVertical: false), 300 * displacement(time: totalTime, isVertical: true)) / displacement(time: totalTime, isVertical: false) / displacement(time: totalTime, isVertical: true)
     }
