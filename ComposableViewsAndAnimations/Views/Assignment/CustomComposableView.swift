@@ -16,7 +16,7 @@ struct ComposableViewsAndAnimations: View {
     var showTime: Bool
     var timeFormat: Bool
     let runAutomatically: Bool
-    let timer = Timer.publish(every: 0.01, on: .main, in: .common)
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var isTimerRunning = false
     @State var timePassed = 0.0
     var timeLeft: Double {

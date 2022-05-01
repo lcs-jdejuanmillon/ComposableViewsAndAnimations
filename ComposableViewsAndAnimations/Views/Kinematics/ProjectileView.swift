@@ -50,19 +50,23 @@ struct ProjectileView: View {
                     .frame(width: 50, height: 50)
                     .offset(x: scaleFactor * displacement(time: time, dimension: 0), y: scaleFactor * displacement(time: time, dimension: 1))
                 Spacer()
-                ComposableViewsAndAnimations(size: 50.0,
-                                             width: 0.2,
-                                             fontSize: 0.5,
-                                             totalTime: totalTime,
-                                             decimalsShown: 0,
-                                             showTime: true,
-                                             timeFormat: false,
-                                             runAutomatically: true)
-                .onReceive(timer) { input in
-                    time += 0.01
-                    if time > totalTime - 0.01 {
-                        timer.upstream.connect().cancel()
+                ZStack {
+                Circle()
+                    .trim(from: 0, to: (totalTime - time) / totalTime)
+                    .stroke(Color(hue: (totalTime - time) / totalTime / 3,
+                                  saturation: 1.0,
+                                  brightness: 1.0),
+                            lineWidth: 10.0)
+                    .frame(width: 50.0, height: 50.0)
+                    .rotationEffect(.degrees(-90))
+                    .onReceive(timer) { input in
+                        time += 0.01
+                        if time > totalTime - 0.01 {
+                            timer.upstream.connect().cancel()
+                        }
                     }
+                    Text("\(Int(totalTime - time))")
+                        .font(.custom("sf", size: 25.0))
                 }
             }
             Spacer()
@@ -75,8 +79,8 @@ struct ProjectileView: View {
 }
 struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectileView(initialVelocity: [0.0, 0.0],
-                       acceleration: [0.0, 10.0],
+        ProjectileView(initialVelocity: [4.0, 1.0],
+                       acceleration: [2.0, 10.0],
                        totalTime: 10.0)
     }
 }

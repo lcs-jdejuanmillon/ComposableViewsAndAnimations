@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D11E779281C6A0E00B4750F /* OneDimensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E778281C6A0E00B4750F /* OneDimensionView.swift */; };
 		0D11E77B281C6A2200B4750F /* ProjectileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E77A281C6A2200B4750F /* ProjectileView.swift */; };
 		0D11E77D281C6B6600B4750F /* KinematicsChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */; };
 		0E84E4E825E547660052BC69 /* IAExampleOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E84E4E725E547650052BC69 /* IAExampleOneView.swift */; };
@@ -37,7 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D11E778281C6A0E00B4750F /* OneDimensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDimensionView.swift; sourceTree = "<group>"; };
 		0D11E77A281C6A2200B4750F /* ProjectileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectileView.swift; sourceTree = "<group>"; };
 		0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsChoosingView.swift; sourceTree = "<group>"; };
 		0E84E4E725E547650052BC69 /* IAExampleOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAExampleOneView.swift; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 		0D11E777281C68F000B4750F /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
-				0D11E778281C6A0E00B4750F /* OneDimensionView.swift */,
 				0D11E77A281C6A2200B4750F /* ProjectileView.swift */,
 				0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */,
 			);
@@ -302,7 +299,6 @@
 				81331FB725E736AA00CFDB02 /* CustomComposableDescriptionView.swift in Sources */,
 				0E8E8B0525E5442100012516 /* ImplicitAnimationsView.swift in Sources */,
 				81D2F46925E57FAE00ACF089 /* EAExampleOneView.swift in Sources */,
-				0D11E779281C6A0E00B4750F /* OneDimensionView.swift in Sources */,
 				0D11E77D281C6B6600B4750F /* KinematicsChoosingView.swift in Sources */,
 				0E84E4F025E591F90052BC69 /* FontsView.swift in Sources */,
 				81D2F48325E7199300ACF089 /* TutorialsView.swift in Sources */,
@@ -377,7 +373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -432,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -452,7 +448,7 @@
 				DEVELOPMENT_TEAM = 2K8368FUS9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ComposableViewsAndAnimations/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,7 +470,7 @@
 				DEVELOPMENT_TEAM = 2K8368FUS9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ComposableViewsAndAnimations/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
