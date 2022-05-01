@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectileView: View {
-    let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     let initialVelocity: [Double]
     let acceleration: [Double]
     let totalTime: Double
@@ -49,12 +49,6 @@ struct ProjectileView: View {
                 Circle()
                     .frame(width: 50, height: 50)
                     .offset(x: scaleFactor * displacement(time: time, dimension: 0), y: scaleFactor * displacement(time: time, dimension: 1))
-                    .onReceive(timer) { input in
-                        withAnimation(.linear(duration: totalTime)) {
-                            time = totalTime
-                        }
-                        timer.upstream.connect().cancel()
-                    }
                 Spacer()
                 ComposableViewsAndAnimations(size: 50.0,
                                              width: 0.2,
@@ -64,6 +58,12 @@ struct ProjectileView: View {
                                              showTime: true,
                                              timeFormat: false,
                                              runAutomatically: true)
+                .onReceive(timer) { input in
+                    time += 0.01
+                    if time > totalTime - 0.01 {
+                        timer.upstream.connect().cancel()
+                    }
+                }
             }
             Spacer()
         }
@@ -77,6 +77,6 @@ struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectileView(initialVelocity: [0.0, 0.0],
                        acceleration: [0.0, 10.0],
-                       totalTime: 2.0)
+                       totalTime: 10.0)
     }
 }
