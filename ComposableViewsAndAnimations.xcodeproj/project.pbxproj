@@ -80,8 +80,8 @@
 		0D11E777281C68F000B4750F /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
-				0D11E77A281C6A2200B4750F /* ProjectileView.swift */,
 				0D11E77C281C6B6600B4750F /* KinematicsChoosingView.swift */,
+				0D11E77A281C6A2200B4750F /* ProjectileView.swift */,
 			);
 			path = Kinematics;
 			sourceTree = "<group>";
