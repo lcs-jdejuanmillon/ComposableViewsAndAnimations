@@ -48,7 +48,7 @@ struct ProjectileView: View {
             HStack {
                 Circle()
                     .frame(width: 50, height: 50)
-                    .offset(x: scaleFactor * displacement(time: time, dimension: 0), y: scaleFactor * displacement(time: time, dimension: 1))
+                    .offset(x: scaleFactor * (displacement(time: time, dimension: 0) - minDis[0]), y: scaleFactor * (displacement(time: time, dimension: 1) - minDis[1]))
                 Spacer()
                 ZStack {
                 Circle()
@@ -80,7 +80,7 @@ struct ProjectileView: View {
 struct ProjectileView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectileView(initialVelocity: [4.0, 1.0],
-                       acceleration: [2.0, 10.0],
+                       acceleration: [2.0, -10.0],
                        totalTime: 10.0)
     }
 }
