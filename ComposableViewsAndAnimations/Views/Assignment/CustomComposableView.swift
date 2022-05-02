@@ -18,10 +18,7 @@ struct ComposableViewsAndAnimations: View {
     let runAutomatically: Bool
     let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State var isTimerRunning = false
-    @State var timePassed = 0.0
-    var timeLeft: Double {
-        return totalTime - timePassed
-    }
+    @State var timeLeft = 0.0
     var time: String {
         if !timeFormat {
             return String(format: "%.\(decimalsShown)f", timeLeft)
@@ -54,7 +51,7 @@ struct ComposableViewsAndAnimations: View {
                     .onReceive(timer) { input in
                         if runAutomatically {
                             if timeLeft > 0.01 {
-                                timePassed += 0.01
+                                timeLeft -= 0.01
                             }
                             else {
                                 timer.upstream.connect().cancel()
@@ -63,10 +60,10 @@ struct ComposableViewsAndAnimations: View {
                         else {
                             if isTimerRunning {
                                 if timeLeft > 0.01 {
-                                    timePassed += 0.01
+                                    timeLeft -= 0.01
                                 }
                                 else {
-                                    timePassed = 0.0
+                                    timeLeft = totalTime
                                     isTimerRunning = false
                                 }
                             }
@@ -84,8 +81,7 @@ struct ComposableViewsAndAnimations: View {
                     .scaledToFit()
                     .frame(width: size / 4, height: size / 4)
                     .onTapGesture {
-                        timePassed = 0.0
-                        timePassed = 0.0
+                        timeLeft = totalTime
                         isTimerRunning = false
                     }
                 Spacer()
@@ -98,6 +94,9 @@ struct ComposableViewsAndAnimations: View {
                     }
             }
             .opacity(runAutomatically ? 0.0 : 1.0)
+        }
+        .task {
+            timeLeft = totalTime
         }
         .frame(width: size, height: size * 1.35)
     }
