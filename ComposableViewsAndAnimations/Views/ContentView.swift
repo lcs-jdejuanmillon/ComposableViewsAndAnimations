@@ -98,6 +98,16 @@ struct ContentView: View {
                     }
 
                 }
+                Section(header: Text("Kinematics")) {
+
+                    NavigationLink(destination: KinematicsChoosingView()) {
+                        
+                        SimpleListItemView(title: "Create a composable view",
+                                           caption: "Make your own reusable view using animations")
+
+                    }
+
+                }
             }
             .listStyle(GroupedListStyle())
 
