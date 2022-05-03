@@ -26,27 +26,27 @@ struct KinematicsChoosingView: View {
             
             Group {
                 TextField("Time in Seconds", text: $inputTime)
-                    .foregroundColor(time > 0 ? .red : .primary)
+                    .foregroundColor(time > 0 ? .primary : .red)
                 TextField("Initial Horizontal Velocity in m/s", text: $inputInitialVelocityX)
-                    .foregroundColor(validInput(input: inputInitialVelocityX) ? .red : .primary)
+                    .foregroundColor(validInput(input: inputInitialVelocityX) ? .primary : .red)
                 TextField("Initial Vertical Velocity in m/s", text: $inputInitialVelocityY)
-                    .foregroundColor(validInput(input: inputInitialVelocityY) ? .red : .primary)
+                    .foregroundColor(validInput(input: inputInitialVelocityY) ? .primary : .red)
                 TextField("Horizontal Acceleration in m/s2", text: $inputAccelerationX)
-                    .foregroundColor(validInput(input: inputAccelerationX) ? .red : .primary)
+                    .foregroundColor(validInput(input: inputAccelerationX) ? .primary : .red)
                 TextField("Vertical Acceleration in m/s2", text: $inputAccelerationY)
-                    .foregroundColor(validInput(input: inputAccelerationY) ? .red : .primary)
+                    .foregroundColor(validInput(input: inputAccelerationY) ? .primary : .red)
             }
             .padding(.bottom)
             
             List {
-                NavigationLink(destination: ProjectileView(initialVelocity: [4.0, 1.0],
-                                                           acceleration: [2.0, -10.0],
-                                                           totalTime: Double(inputTime)!)) {
+                NavigationLink(destination: ProjectileView(initialVelocity: [value(input: inputInitialVelocityX), value(input: inputInitialVelocityY)],
+                                                           acceleration: [value(input: inputAccelerationX), value(input: inputAccelerationY)],
+                                                           totalTime: time)) {
                     SimpleListItemView(title: "Kinematics Animation",
                                        caption: "Movement of an object in two dimensions with constant acceleration")
                 }
             }
-            .opacity(time > 0 && validInput(input: inputInitialVelocityX) && validInput(input: inputInitialVelocityX) && validInput(input: inputAccelerationX) && validInput(input: inputAccelerationY) ? 0.0 : 1.0)
+            .opacity(time > 0 && validInput(input: inputInitialVelocityX) && validInput(input: inputInitialVelocityX) && validInput(input: inputAccelerationX) && validInput(input: inputAccelerationY) ? 1.0 : 0.0)
             
         }
         .padding()
@@ -57,6 +57,12 @@ struct KinematicsChoosingView: View {
             return true
         }
         return false
+    }
+    func value(input: String) -> Double {
+        if let value = Double(input) {
+            return value
+        }
+        return 0
     }
 }
 

@@ -38,10 +38,10 @@ struct ProjectileView: View {
         return maxDis
     }
     var scaleFactor: Double {
-        if 500 * (maxDis[0] - minDis[0]) < 300 * (maxDis[1] - minDis[1]) {
+        if 500 * (maxDis[0] - minDis[0]) < 250 * (maxDis[1] - minDis[1]) {
             return 500 / (maxDis[1] - minDis[1])
         }
-        return 300 * (maxDis[0] - minDis[0])
+        return 250 / (maxDis[0] - minDis[0])
     }
     var body: some View {
         VStack {
@@ -67,6 +67,7 @@ struct ProjectileView: View {
                     }
                     Text("\(Int(totalTime - time))")
                         .font(.custom("sf", size: 25.0))
+                        .opacity(totalTime - time < 0.01 ? 0.0 : 1.0)
                 }
             }
             Spacer()
